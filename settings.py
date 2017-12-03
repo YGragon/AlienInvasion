@@ -12,3 +12,9 @@ class Settings():
         # 飞船的移动像素为1.5一次
         self.ship_speed_factor = 1.5
 
+        # 子弹的设置
+        self.bullet_speed_factor = 1
+        self.bullet_width = 3
+        self.bullet_hight = 15
+        self.bullet_color = 60, 60, 60
+
