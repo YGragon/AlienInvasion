@@ -8,3 +8,7 @@ class Settings():
         self.screen_hight = 600
         self.bg_color = (230, 230, 230)
 
+        # 飞船的设置
+        # 飞船的移动像素为1.5一次
+        self.ship_speed_factor = 1.5
+
