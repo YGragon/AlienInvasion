@@ -9,6 +9,7 @@ from alien import Alien
 from pygame.sprite import Group
 from game_stats import GameStats
 from button import Button
+from scoreboard import Scoreboard
 
 
 def run_game():
@@ -42,6 +43,9 @@ def run_game():
     # 创建一个用于存储游戏统计的实例
     stats = GameStats(ai_settings)
 
+    # 创建记分牌
+    sb = Scoreboard(ai_settings, screen, stats)
+
     # 开始游戏的主要循环
     while True:
         # 监听键盘和鼠标事件
@@ -51,13 +55,13 @@ def run_game():
             # 刷新飞船的位置
             ship.update()
             # 更新子弹的位置
-            gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
+            gf.update_bullets(ai_settings, screen, stats, sb, ship, aliens, bullets)
 
             # 更新外星人的位置
             gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
 
 
         # 刷新屏幕
-        gf.update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button)
+        gf.update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets, play_button)
 
 run_game()
