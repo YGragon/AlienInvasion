@@ -11,9 +11,11 @@ class Settings():
         # 飞船的设置
         # 飞船的移动像素为1.5一次
         self.ship_speed_factor = 1.5
+        # 一开始玩家拥有的飞船数量,从0开始计数
+        self.ship_limit = 2
 
         # 子弹的设置
-        self.bullet_speed_factor = 1
+        self.bullet_speed_factor = 3
         self.bullet_width = 3
         self.bullet_hight = 15
         self.bullet_color = 60, 60, 60
