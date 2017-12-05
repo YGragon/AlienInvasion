@@ -14,7 +14,7 @@ class Settings():
         self.ship_limit = 2
 
         # 子弹的设置
-        self.bullet_width = 800
+        self.bullet_width = 3
         self.bullet_hight = 15
         self.bullet_color = 60, 60, 60
         # 子弹的数量
@@ -52,4 +52,4 @@ class Settings():
         self.alien_speed_factor *= self.speedup_scale
 
         self.alien_points = int(self.alien_points * self.score_scale)
-        print(self.alien_points)
+
