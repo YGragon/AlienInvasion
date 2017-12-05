@@ -11,17 +11,17 @@ class Settings():
         # 飞船的设置
 
         # 一开始玩家拥有的飞船数量,从0开始计数
-        self.ship_limit = 2
+        self.ship_limit = 0
 
         # 子弹的设置
-        self.bullet_width = 3
+        self.bullet_width = 300
         self.bullet_hight = 15
         self.bullet_color = 60, 60, 60
         # 子弹的数量
-        self.bullets_allowed = 3
+        self.bullets_allowed = 300
 
         # 外星人的设置
-        self.fleet_drop_speed = 10
+        self.fleet_drop_speed = 20
 
         # 以什么样的速度加快游戏节奏
         self.speedup_scale = 1.1

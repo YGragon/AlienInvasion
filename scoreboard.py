@@ -38,9 +38,12 @@ class Scoreboard():
 
     def prep_high_score(self):
         """将最高得分转换为一副渲染的图像"""
-        high_score = int(round(self.stats.high_score, -1))
+        #high_score = int(round(self.stats.high_score, -1))
+        high_score = int(self.stats.high_score)
+        print(str(high_score))
         # 将得分格式化
         high_score_str = "{:,}".format(high_score)
+        print(high_score_str)
         self.high_score_image = self.font.render(high_score_str, True, self.text_color, self.ai_settings.bg_color)
 
         # 将得分放在屏幕中间

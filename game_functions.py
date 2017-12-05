@@ -9,9 +9,11 @@ def check_events(ai_settings, screen, stats, sb, play_button, ship, aliens, bull
     """响应按键和鼠标事件"""
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
+            # 按下q 退出游戏
+            write_high_score(stats)
             sys.exit()
         elif event.type == pygame.KEYDOWN:
-            check_keydown_events(event, ai_settings, screen, ship, bullets)
+            check_keydown_events(event, ai_settings, screen, stats, ship, bullets)
         elif event.type == pygame.KEYUP:
             check_keyup_events(event, ship)
         elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -44,7 +46,7 @@ def check_play_button(ai_settings, screen, stats, sb, play_button, ship, aliens,
         create_fleet(ai_settings, screen, ship, aliens)
         ship.center_ship()
 
-def check_keydown_events(event, ai_settings, screen, ship, bullets):
+def check_keydown_events(event, ai_settings, screen, stats, ship, bullets):
     # 响应鼠标按下事件
     if event.key == pygame.K_RIGHT:
         # 按下向右移动飞船
@@ -57,8 +59,23 @@ def check_keydown_events(event, ai_settings, screen, ship, bullets):
         fire_bullet(ai_settings, screen, ship, bullets)
     elif event.key == pygame.K_q:
         # 按下q退出游戏
+        write_high_score(stats)
         sys.exit()
 
+def write_high_score(stats):
+    # 先读取文件，如果最高分比文件中的分数还低就不写入文件，否则写入文件
+    read_high_score_txt = int(read_high_score())
+    if read_high_score_txt < stats.high_score:
+        write_file = 'high_score.txt'
+        with open(write_file, 'w') as write_file_object:
+            write_file_object.write(str(stats.high_score))
+
+def read_high_score():
+    """读取文件中的最高分"""
+    read_file = 'high_score.txt'
+    with open(read_file) as read_file_object:
+        read_high_score = read_file_object.read()
+    return read_high_score
 
 def check_keyup_events(event, ship):
     # 响应鼠松开事件
@@ -211,7 +228,7 @@ def check_aliens_bottom(ai_settings, screen, stats, sb, ship, aliens, bullets):
     for alien in aliens.sprites():
         if alien.rect.bottom >= screen_rect.bottom:
             # 像飞船被撞到一样处理
-            ship_hit(ai_settings, stats, screen, ship, aliens, bullets)
+            ship_hit(ai_settings, stats, screen, sb, ship, aliens, bullets)
             break
 
 def update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets, play_button):
